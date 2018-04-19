@@ -1,0 +1,32 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "webpack --progress --hide-modules --config=webpack.config.js",
+        "watch": "npm run dev -- -w",
+        "watch-poll": "npm run dev -- -w --watch-poll",
+        "hot": "node webpack-dev-server --inline --hot --config=webpack.config.js",
+        "production": "npm run dev -- -p",
+        "heroku-postbuild": "rm -rf node_modules/ && npm install && npm run production"
+    },
+    "devDependencies": {
+        "laravel-mix": "^0.8.1"
+    },
+    "dependencies": {
+        "@uirouter/angularjs": "^1.0.3",
+        "angular": "^1.6.0",
+        "angular-animate": "^1.6.0",
+        "angular-aria": "^1.6.0",
+        "angular-breadcrumb": "^0.5.0",
+        "angular-chart.js": "^1.1.1",
+        "angular-filter": "^0.5.15",
+        "angular-material": "^1.1.1",
+        "angular-material-expansion-panel": "^0.7.0",
+        "angular-material-simple-components": "^1.1.0",
+        "angular-messages": "^1.6.1",
+        "angular-resource": "^1.6.0",
+        "chart.js": "^2.5.0",
+        "moment": "^2.15.1",
+        "ng-mask": "^3.1.1",
+        "ngMask": "https://github.com/candreoliveira/ngMask.git"
+    }
+}
