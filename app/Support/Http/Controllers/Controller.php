@@ -18,4 +18,6 @@ class Controller extends BaseController
     protected function getCurrentUser(){
         return Auth::user();
     }
+
+    
 }

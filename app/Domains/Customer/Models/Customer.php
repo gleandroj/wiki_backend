@@ -15,7 +15,12 @@ class Customer extends Model
      * @var array
      */
     protected $fillable = [
-        
+        'id',
+        'nome',
+        'dt_nascimento',
+        'rg',
+        'cpf',
+        'telefone'
     ];
 
     /**
@@ -23,9 +28,7 @@ class Customer extends Model
      *
      * @var array
      */
-    protected $hidden = [
-        
-    ];
+    protected $hidden = [];
 
     /**
      * The attributes that should be mutated to dates.

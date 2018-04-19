@@ -16,6 +16,10 @@ $faker = Faker\Factory::create('pt_BR');
 
 $factory->define(Customer::class, function () use ($faker) {
     return [
-        
+        'nome' => $faker->name,
+        'dt_nascimento' => $faker->date('Y-m-d', '-10 years'),
+        'rg' => $faker->numerify('#######'),
+        'cpf' => $faker->numerify('###.###.###-##'),
+        'telefone' => $faker->numerify('(62) 9####-####')
     ];
 });

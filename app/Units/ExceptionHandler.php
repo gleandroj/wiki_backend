@@ -4,6 +4,7 @@ namespace Wiki\Units;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler;
+use Illuminate\Validation\ValidationException;
 
 class ExceptionHandler extends Handler
 {
@@ -13,7 +14,7 @@ class ExceptionHandler extends Handler
      * @var array
      */
     protected $dontReport = [
-        //
+        ValidationException::class
     ];
 
     /**
@@ -49,5 +50,17 @@ class ExceptionHandler extends Handler
     public function render($request, Exception $exception)
     {
         return parent::render($request, $exception);
+    }
+
+    /**
+     * Create a response object from the given validation exception.
+     *
+     * @param  \Illuminate\Validation\ValidationException  $e
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function convertValidationExceptionToResponse(ValidationException $e, $request)
+    {
+        return $this->invalidJson($request, $e);
     }
 }

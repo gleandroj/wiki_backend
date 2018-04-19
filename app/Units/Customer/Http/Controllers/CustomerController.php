@@ -44,7 +44,11 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            
+            'nome' => 'required|string',
+            'dt_nascimento' => 'required|date_format:Y-m-d',
+            'rg' => 'required|unique:customers,rg|integer',
+            'cpf' => 'required|unique:customers,cpf|string|regex:/[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}/',
+            'telefone' => 'required|string|regex:/\([0-9]{2}\) ([0-9]{4,5}-[0-9]{4})/'
         ]);
 
         return response()->json($this->customerService->create($request->all())->toArray(), Response::HTTP_CREATED);

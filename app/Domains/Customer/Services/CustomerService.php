@@ -56,7 +56,7 @@ class CustomerService implements CustomerServiceContract
         if(!$customer = $this->customerRepository->create($data->all()))
             throw new \Exception(trans('messages.MSG4'));
 
-        return $customer;
+        return $customer->fresh();
     }
 
     /**
@@ -73,7 +73,7 @@ class CustomerService implements CustomerServiceContract
         if(!$customer = $this->customerRepository->update($id, $data->all()))
             throw new \Exception(trans('messages.MSG4'));
 
-        return $customer;
+        return $customer->fresh();
     }
 
     /**
@@ -84,7 +84,7 @@ class CustomerService implements CustomerServiceContract
     public function delete($id)
     {
         if(!$deleted = $this->customerRepository->delete($id)) throw new \Exception(trans('messages.MSG4'));
-        return $deleted;
+        return $deleted->fresh();
     }
 
     /**
@@ -95,6 +95,6 @@ class CustomerService implements CustomerServiceContract
     public function restore($id)
     {
         if(!$restored = $this->customerRepository->restore($id)) throw new \Exception(trans('messages.MSG4'));
-        return $restored;
+        return $restored->fresh();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Wiki\Units\User\Providers;
+namespace Wiki\Units\Customer\Providers;
 
 use Wiki\Support\Units\ServiceProvider;
 use Wiki\Domains\Customer\Models\Customer;

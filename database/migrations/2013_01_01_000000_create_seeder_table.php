@@ -13,7 +13,7 @@ class CreateSeederTable extends Migration
      */
     public function up()
     {
-        Schema::create('public.seeders', function (Blueprint $table) {
+        Schema::create('seeders', function (Blueprint $table) {
             $table->increments('id');
             $table->string('seeder');
             $table->string('environment');
@@ -28,7 +28,7 @@ class CreateSeederTable extends Migration
      */
     public function down()
     {
-        if(env('APP_ENV') === 'local' || env('APP_ENV') === 'testing') Schema::dropIfExists('public.seeders');
+        if(env('APP_ENV') === 'local' || env('APP_ENV') === 'testing') Schema::dropIfExists('seeders');
     }
 
 }
