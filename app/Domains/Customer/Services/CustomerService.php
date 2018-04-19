@@ -7,6 +7,7 @@ use Wiki\Domains\Customer\Repositories\CustomerRepository;
 use Wiki\Domains\Customer\Contracts\CustomerServiceContract;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Carbon\Carbon;
 
 class CustomerService implements CustomerServiceContract
 {
@@ -32,6 +33,15 @@ class CustomerService implements CustomerServiceContract
         return $this->customerRepository->getAll();
     }
 
+
+    /**
+     * @return Collection|Customer
+     */
+    public function paginate($perPage = 10)
+    {
+        return $this->customerRepository->paginate($perPage);
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -52,7 +62,7 @@ class CustomerService implements CustomerServiceContract
     public function create(array $data)
     {
         $data = collect($data);
-
+        $data->put('dt_nascimento', Carbon::createFromFormat('d/m/Y', $data->get('dt_nascimento')));
         if(!$customer = $this->customerRepository->create($data->all()))
             throw new \Exception(trans('messages.MSG4'));
 
@@ -68,6 +78,7 @@ class CustomerService implements CustomerServiceContract
     public function update($id, array $data)
     {
         $data = collect($data);
+        $data->put('dt_nascimento', Carbon::createFromFormat('d/m/Y', $data->get('dt_nascimento')));
         $oldCustomer = $this->getById($id);
 
         if(!$customer = $this->customerRepository->update($id, $data->all()))

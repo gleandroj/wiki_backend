@@ -73,6 +73,7 @@ class CustomerTest extends TestCase
     public function testCreateCustomer()
     {
         $data = factory(Customer::class)->make()->toArray();
+        $data['dt_nascimento'] = '29/04/1995';
         $response = $this->post("/api/customers", $data);
         $response->assertStatus(201);
         $response->assertJsonStructure([

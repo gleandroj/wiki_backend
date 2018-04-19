@@ -36,7 +36,8 @@ class Customer extends Model
      * @var array
      */
     protected $dates = [
-        'deleted_at'
+        'deleted_at',
+        'dt_nascimento'
     ];
 
     /**

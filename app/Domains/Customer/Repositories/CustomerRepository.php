@@ -7,4 +7,5 @@ use Wiki\Domains\Customer\Models\Customer;
 
 interface CustomerRepository extends RepositoryContract
 {
+    public function paginate($perPage = 10);
 }

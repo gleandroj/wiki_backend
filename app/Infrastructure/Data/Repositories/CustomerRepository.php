@@ -17,4 +17,11 @@ class CustomerRepository extends AbstractRepository implements CustomerRepositor
     {
         parent::__construct($model, $uow);
     }
+
+    /**
+     * 
+     */
+    public function paginate($perPage = 10){
+        return $this->model->paginate($perPage);
+    }
 }

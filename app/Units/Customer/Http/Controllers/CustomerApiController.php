@@ -8,8 +8,10 @@ use Wiki\Support\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Wiki\Units\Customer\Http\Requests\StoreCustomerRequest;
+use Wiki\Units\Customer\Http\Requests\UpdateCustomerRequest;
 
-class CustomerController extends Controller
+class CustomerApiController extends Controller
 {
     /**
      * @var CustomerServiceContract
@@ -36,21 +38,23 @@ class CustomerController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return Customer|Collection|\Illuminate\Http\Response
+     */
+    public function paginate()
+    {
+        return $this->customerService->paginate(request()->get('perPage', 10));
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return Customer|\Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCustomerRequest $request)
     {
-        $this->validate($request, [
-            'nome' => 'required|string',
-            'dt_nascimento' => 'required|date_format:Y-m-d',
-            'rg' => 'required|unique:customers,rg|integer',
-            'cpf' => 'required|unique:customers,cpf|string|regex:/[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}/',
-            'telefone' => 'required|string|regex:/\([0-9]{2}\) ([0-9]{4,5}-[0-9]{4})/'
-        ]);
-
         return response()->json($this->customerService->create($request->all())->toArray(), Response::HTTP_CREATED);
     }
 
@@ -63,7 +67,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        return $this->customerService->getById($customer->id);
+        return $customer;
     }
 
     /**
@@ -74,11 +78,8 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function update(Request $request, Customer $customer)
+    public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        $this->validate($request, [
-            
-        ]);
         return $this->customerService->update($customer->id, $request->all());
     }
 

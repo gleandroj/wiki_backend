@@ -13,8 +13,5 @@ class Web extends RouteFile
      */
     public function routes()
     {
-        $this->router->get('/', function () {
-            return view('app');
-        });
     }
 }

@@ -3,6 +3,7 @@
 namespace Wiki\Units\Customer\Providers;
 
 use Wiki\Units\Customer\Routes\Api;
+use Wiki\Units\Customer\Routes\Web;
 use Wiki\Domains\Customer\Models\Customer;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -67,6 +68,11 @@ class RouteServiceProvider extends ServiceProvider
             'middleware' => 'api',
             'namespace'  => $this->namespace,
             'prefix' => env('API_PREFIX', 'api')
+        ]))->register();
+
+        (new Web([
+            'middleware' => 'web',
+            'namespace'  => $this->namespace
         ]))->register();
     }
 }
