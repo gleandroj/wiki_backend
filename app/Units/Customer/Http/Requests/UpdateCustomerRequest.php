@@ -27,8 +27,8 @@ class UpdateCustomerRequest extends FormRequest
         return [
             'nome' => 'required|string',
             'dt_nascimento' => 'required|date_format:d/m/Y',
-            'rg' => ['required|integer', Rule::unique('customers')->ignore($this->customer->id)],
-            'cpf' => ['required|string|regex:/[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}/', Rule::unique('customers')->ignore($this->customer->id)],
+            'rg' => ['required', 'integer', Rule::unique('customers')->ignore($this->customer->id)],
+            'cpf' => ['required', 'string', 'regex:/[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}/', Rule::unique('customers')->ignore($this->customer->id)],
             'telefone' => 'required|string|regex:/\([0-9]{2}\) ([0-9]{4,5}-[0-9]{4})/'
         ];
     }

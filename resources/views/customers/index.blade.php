@@ -5,8 +5,22 @@
     <div class=" col-lg-9">
         <h2>Clientes</h2>                
     </div>
-    <button type="button" class="btn btn-success pull-right">Novo</button>
+    <a href="{{ url('/customers', ['create']) }}" class="btn btn-success pull-right">Novo</a>
 </div>
+
+<div class="row">
+    <div class=" col-lg-10">
+        @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }} 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif          
+    </div>
+</div>
+
 <br/>
 @component('bootstrap::table')
 <thead>

@@ -54,7 +54,8 @@ class CustomerWebController extends Controller
     public function edit(Customer $customer){
         $title = 'Editar';
         $disabled = false;
-        return view('customers.form', compact('customer', 'title', 'disabled'));
+        $method = 'PUT';
+        return view('customers.form', compact('customer', 'title', 'disabled', 'method'));
     }
 
 
@@ -71,16 +72,16 @@ class CustomerWebController extends Controller
      * 
      */
     public function store(StoreCustomerRequest $request){
-        $this->customerSerivce->create($request->all());
-        return redirect()->back();
+        $this->customerService->create($request->all());
+        return redirect('/customers')->with('status', 'Cliente cadastrado!');
     }
 
     /**
      * 
      */
     public function update(Customer $customer, UpdateCustomerRequest $request){
-        $this->customerSerivce->update($customer->id, $request->all());
-        return redirect()->back();
+        $this->customerService->update($customer->id, $request->all());
+        return redirect('/customers')->with('status', 'Cliente atualizado!');
     }
 
     /**

@@ -22,6 +22,6 @@ class CustomerRepository extends AbstractRepository implements CustomerRepositor
      * 
      */
     public function paginate($perPage = 10){
-        return $this->model->paginate($perPage);
+        return $this->model->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->paginate($perPage);
     }
 }

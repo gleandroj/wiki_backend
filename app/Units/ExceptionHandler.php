@@ -51,16 +51,4 @@ class ExceptionHandler extends Handler
     {
         return parent::render($request, $exception);
     }
-
-    /**
-     * Create a response object from the given validation exception.
-     *
-     * @param  \Illuminate\Validation\ValidationException  $e
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    protected function convertValidationExceptionToResponse(ValidationException $e, $request)
-    {
-        return $this->invalidJson($request, $e);
-    }
 }
