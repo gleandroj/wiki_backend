@@ -1,7 +1,0 @@
-build:
-  languages:
-    - php
-release:
-  command:
-    - php artisan migrate --seed
-    
