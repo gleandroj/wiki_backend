@@ -22,5 +22,8 @@
     },
     "dependencies": {
         "jquery-mask-plugin": "^1.14.15"
+    },
+    "engines": {
+        "npm": "5.6.x"
     }
 }
